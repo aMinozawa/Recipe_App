@@ -1,11 +1,14 @@
 <%= form_with(model: @recipe, local: true) do |f| %>
   <div>
+    <%= f.label :title, "レシピ名" %><br>
     <%= f.text_field :title %>
   </div>
   <div>
+    <%= f.label :title, "材料" %><br>
     <%= f.text_area :material %>
   </div>
   <div>
+    <%= f.label :title, "作り方" %><br>
     <%= f.text_area :recipe %>
   </div>
   <%= f.submit %>
