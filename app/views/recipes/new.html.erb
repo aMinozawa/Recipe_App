@@ -4,6 +4,10 @@
     <%= f.text_field :title %>
   </div>
   <div>
+    <%= f.label :dish, "完成写真" %><br>
+    <%= f.file_field :dish, class: "image" %>
+  </div>
+  <div>
     <%= f.label :title, "材料" %><br>
     <%= f.text_area :material %>
   </div>
