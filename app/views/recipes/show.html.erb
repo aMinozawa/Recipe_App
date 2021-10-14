@@ -1,4 +1,4 @@
 <p><%= @recipe.title %></p>
-<p><%= image_tag @recipe.dish.url if `recipe.dish?` %></p>
+<p><%= image_tag @recipe.dish.url if @recipe.dish? %></p>
 <p><%= @recipe.material %></p>
 <p><%= @recipe.recipe %></p>

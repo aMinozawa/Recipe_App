@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
     if @recipe.save
       flash[:notice] = "レシピを投稿しました。"
       redirect_to("/recipes/#{@recipe.id}")

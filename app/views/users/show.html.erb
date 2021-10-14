@@ -1,0 +1,6 @@
+<h2>ユーザーの詳細ページ</h2>
+<%= @user.name %>
+<hr>
+<% @recipes.each do |recipe| %>
+  <%= link_to(recipe.title, "/recipes/#{recipe.id}")%>
+<% end %>
