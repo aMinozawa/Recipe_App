@@ -15,11 +15,11 @@
  */
  /*
 *= ./bootstrap_import
-*= require_tree .
-*= require_self
 */
 
- @import "bootstrap";
+@import '~bootstrap/scss/bootstrap';
+ @import "layouts/navbar";
+
  .container {
   width: 80%;
   margin: 20px auto;
@@ -56,24 +56,4 @@ li {
   list-style: none;
   float: left;
   padding-right: 10px;
-}
-
-header {
-  padding: 15px;
-  background-color: #FFA500;
-  color: #fff;
-  height: 20px;
-}
-
-header a {
-  color: #fff;
-}
-
-.header-logo {
-  float: left;
-  padding-right: 20px;
-}
-
-.header-logo a {
-  text-decoration: none;
 }
