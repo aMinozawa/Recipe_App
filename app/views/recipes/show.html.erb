@@ -2,3 +2,7 @@
 <p><%= image_tag @recipe.dish.url if @recipe.dish? %></p>
 <p><%= @recipe.material %></p>
 <p><%= @recipe.recipe %></p>
+<% if @recipe.user_id == current_user.id %>
+  <%= link_to("編集", "/recipes/#{@recipe.id}/edit") %>
+  <%= link_to("削除", "/recipes/#{@recipe.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) %>
+<% end %>
