@@ -1,1 +1,6 @@
-<%= @text %>
+<h1>レシピ一覧</h1>
+
+<% @recipes.each do |recipe| %>
+  <%= image_tag recipe.dish.to_s %>
+  <%= link_to recipe.title, "/recipes/#{recipe.id}" %><br>
+<% end %>

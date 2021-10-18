@@ -2,8 +2,12 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :ensure_corrent_user, only: [:edit, :update, :destroy]
 
-  def index
+  def home
     @text = "Randing Page"
+  end
+
+  def index
+    @recipes = Recipe.all
   end
 
   def show
