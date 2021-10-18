@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  has_many :comments, dependent: :destroy
   belongs_to :user
   validates :title, presence: true, length: { maximum: 100 }
   validates :material, presence: true, length: { maximum: 300 }
