@@ -14,9 +14,10 @@
             <li class="nav-item">
               <a class="nav-link" href="/recipes/new">レシピ投稿</a>
             </li>
-            <li class="nav-item">
+            <%# <li class="nav-item">
               <a class="nav-link" href="/users/sign_out">ログアウト</a>
-            </li>
+            </li> %>
+            <%= link_to("ログアウト", "/users/sign_out", method: :get, class: "nav-link") %>
           <% else %>
             <li class="nav-item">
               <a class="nav-link active" href="/recipes">レシピ一覧</a>
