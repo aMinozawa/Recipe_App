@@ -2,5 +2,5 @@
 <%= @user.name %>
 <hr>
 <% @recipes.each do |recipe| %>
-  <%= link_to(recipe.title, "/recipes/#{recipe.id}")%>
+  <%= link_to(recipe.title, "/recipes/#{recipe.id}") %><br>
 <% end %>
