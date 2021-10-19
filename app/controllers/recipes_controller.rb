@@ -3,11 +3,10 @@ class RecipesController < ApplicationController
   before_action :ensure_corrent_user, only: [:edit, :update, :destroy]
 
   def home
-    @text = "Randing Page"
   end
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 3).order(create_at: :desc)
   end
 
   def show
@@ -21,6 +20,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.image = "default.jpg"
     @recipe.user_id = current_user.id
     if @recipe.save
       flash[:notice] = "レシピを投稿しました。"
