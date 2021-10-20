@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.paginate(page: params[:page], per_page: 3).order(create_at: :desc)
+    @recipes = Recipe.paginate(page: params[:page], per_page: 3)
   end
 
   def show
