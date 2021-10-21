@@ -1,23 +1,27 @@
-<p><%= @recipe.title %></p>
-<p><%= image_tag @recipe.dish.url if @recipe.dish? %></p>
-<p><%= safe_join(@recipe.material.split("\n"),tag(:br)) %></p>
-<p><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %></p>
-<% if @recipe.user_id == current_user.id %>
-  <%= link_to("編集", "/recipes/#{@recipe.id}/edit") %>
-  <%= link_to("削除", "/recipes/#{@recipe.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) %>
-<% end %>
-<div>
-  <%= form_with(model: [@recipe, @comment], local: true) do |f| %>
-    <div>
-      <%= f.label :body, "コメント" %><br>
-      <%= f.text_area :body %>
-    </div>
-    <%= f.submit %>
+<div class='recipe_show'>
+  <h3 id="recipe_title"><%= link_to @recipe.title %></h3> by <%= @recipe.user.name %><br>
+  <div class='row'>
+    <div class='dish_img col-md-7'><%= image_tag @recipe.dish.to_s if @recipe.dish? %></div>
+    <div class='material col-md-5'>材料<br><%= safe_join(@recipe.material.split("\n"),tag(:br)) %></div>
+  </div>
+  <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %></div>
+  <% if @recipe.user_id == current_user.id %>
+    <%= link_to("編集", "/recipes/#{@recipe.id}/edit") %>
+    <%= link_to("削除", "/recipes/#{@recipe.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) %>
   <% end %>
-</div>
-<hr>
-<div>
-  <% @recipe.comments.each do |comment| %>
-    <p><%= comment.body %></p>
-  <% end %>
+  <div>
+    <%= form_with(model: [@recipe, @comment], local: true) do |f| %>
+      <div>
+        <%= f.label :body, "コメント" %><br>
+        <%= f.text_area :body %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <hr>
+  <div>
+    <% @recipe.comments.each do |comment| %>
+      <p><%= comment.body %></p>
+    <% end %>
+  </div>
 </div>
