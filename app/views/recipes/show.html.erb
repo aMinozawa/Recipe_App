@@ -1,27 +1,43 @@
 <div class='recipe_show'>
   <h3 id="recipe_title"><%= link_to @recipe.title %></h3> by <%= @recipe.user.name %><br>
   <div class='row'>
-    <div class='dish_img col-md-7'><%= image_tag @recipe.dish.to_s if @recipe.dish? %></div>
-    <div class='material col-md-5'>材料<br><%= safe_join(@recipe.material.split("\n"),tag(:br)) %></div>
+    <div class='dish_img row'>
+      <div class='col-md-5'>
+        <% if @recipe.dish? %>
+          <%= image_tag @recipe.dish.to_s if @recipe.dish? %>
+        <% else %>
+          <%= image_tag 'default.jpg' %>
+        <% end %>
+      </div>
+    <div class='col-md-5'>
+      材料<br><%= safe_join(@recipe.material.split("\n"),tag(:br)) %>
+    </div>
   </div>
   <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %></div>
   <% if @recipe.user_id == current_user.id %>
-    <%= link_to("編集", "/recipes/#{@recipe.id}/edit") %>
-    <%= link_to("削除", "/recipes/#{@recipe.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) %>
+    <div class='d-flex'>
+      <%= link_to("/recipes/#{@recipe.id}/edit") do %>
+        <button type="button" class="btn btn-outline-secondary btn-sm">編集</button>
+      <% end %>
+      <%= link_to("/recipes/#{@recipe.id}", method: :delete, data: {confirm: "本当に削除しますか？"}) do %>
+        <button type="button" class="btn btn-outline-secondary btn-sm">削除</button>
+      <% end %>
+    </div><br><br>
   <% end %>
+  <hr>
+  <div>
+    <h5>コメント一覧</h5>
+    <% @recipe.comments.each do |comment| %>
+      <p><%= comment.body %>-----------<%= l comment.created_at %></p>
+    <% end %>
+  </div>
   <div>
     <%= form_with(model: [@recipe, @comment], local: true) do |f| %>
       <div>
         <%= f.label :body, "コメント" %><br>
         <%= f.text_area :body %>
       </div>
-      <%= f.submit %>
-    <% end %>
-  </div>
-  <hr>
-  <div>
-    <% @recipe.comments.each do |comment| %>
-      <p><%= comment.body %></p>
+      <%= f.submit 'コメントする'%>
     <% end %>
   </div>
 </div>

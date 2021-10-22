@@ -3,3 +3,7 @@ ja:
     previous_label: "前へ"
     next_label: "次へ"
     page_gap: "…"
+
+  time:
+    formats:
+     default: "%Y/%m/%d %H:%M"

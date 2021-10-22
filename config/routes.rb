@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'recipes#home'
   get    "/users/:id",       to: "users#show"
   resources :recipes do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
   
 end
