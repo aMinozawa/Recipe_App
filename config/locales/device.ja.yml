@@ -1,0 +1,41 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        user: ユーザー
+        name: 名前
+        email: Eメール
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+        unauthenticated: ログインもしくはアカウント登録してください
+  devise:
+    registrations:
+      edit:
+        are_you_sure: 本当によろしいですか？
+        update: 更新
+      new:
+        sign_up: アカウント登録
+        signed_up: アカウント登録が完了しました
+    sessions:
+      new:
+        sign_in: ログイン
+      signed_in: ログインしました
+      signed_out: ログアウトしました
+    failure:
+        invalid: "%{authentication_keys}またはパスワードが違います。"
+        not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+  errors:
+    messages:
+      already_confirmed: は既に登録済みです。ログインしてください。
+      not_found: は見つかりませんでした
+      not_saved:
+        one: エラーが発生したため保存されませんでした。
+        other: "%{count} 件のエラーが発生したため保存されませんでした。"
+    models:
+        user:
+          password_confirmation: パスワード（確認用）
+          taken: 既に使われているメールアドレスです
+          confirmation: パスワードとパスワード（確認用）には同じ文字を入力してください
+  

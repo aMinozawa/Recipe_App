@@ -1,4 +1,5 @@
 <%= form_with(model: @recipe, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div>
     <%= f.label :title, "レシピ名" %><br>
     <%= f.text_field :title %>

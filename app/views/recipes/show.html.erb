@@ -1,18 +1,17 @@
 <div class='recipe_show'>
-  <h3 id="recipe_title"><%= link_to @recipe.title %></h3> by <%= @recipe.user.name %><br>
+  <h3 id="recipe_title"><%= link_to @recipe.title %></h3> by <%= @recipe.user.name %><br><br>
   <div class='row'>
-    <div class='dish_img row'>
-      <div class='col-md-5'>
-        <% if @recipe.dish? %>
-          <%= image_tag @recipe.dish.to_s if @recipe.dish? %>
-        <% else %>
-          <%= image_tag 'default.jpg', width: '95%', height: '95%' %>
-        <% end %>
-      </div>
+    <div class='dish_img row col-md-5'>
+      <% if @recipe.dish? %>
+        <%= image_tag @recipe.dish.to_s if @recipe.dish? %>
+      <% else %>
+        <%= image_tag 'default.jpg' %>
+      <% end %>
+    </div>
     <div class='col-md-5'>
       材料<br><%= safe_join(@recipe.material.split("\n"),tag(:br)) %>
     </div>
-  </div>
+  </div><br>
   <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %><br><br></div>
   <% if user_signed_in? && @recipe.user_id == current_user.id %>
     <div class='d-flex'>
@@ -38,6 +37,7 @@
   </div>
   <div>
     <%= form_with(model: [@recipe, @comment], local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div>
         <%= f.label :body, "コメント" %><br>
         <%= f.text_area :body %>
