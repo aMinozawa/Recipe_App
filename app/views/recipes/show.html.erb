@@ -6,14 +6,14 @@
         <% if @recipe.dish? %>
           <%= image_tag @recipe.dish.to_s if @recipe.dish? %>
         <% else %>
-          <%= image_tag 'default.jpg' %>
+          <%= image_tag 'default.jpg', width: '95%', height: '95%' %>
         <% end %>
       </div>
     <div class='col-md-5'>
       材料<br><%= safe_join(@recipe.material.split("\n"),tag(:br)) %>
     </div>
   </div>
-  <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %></div>
+  <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %><br><br></div>
   <% if @recipe.user_id == current_user.id %>
     <div class='d-flex'>
       <%= link_to("/recipes/#{@recipe.id}/edit") do %>
@@ -28,7 +28,12 @@
   <div>
     <h5>コメント一覧</h5>
     <% @recipe.comments.each do |comment| %>
-      <p><%= comment.body %>-----------<%= l comment.created_at %></p>
+      <li>
+        <%= comment.body %>-----------<%= l comment.created_at %>
+        <% if user_signed_in? && comment.user_id == current_user.id %>
+          <%= link_to 'コメントを削除', recipe_comment_path(@recipe, comment),method: :delete , confirm: 'コメントを削除しますか？' %>
+        <% end %>
+      </li> <br>
     <% end %>
   </div>
   <div>

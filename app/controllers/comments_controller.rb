@@ -10,13 +10,13 @@ class CommentsController < ApplicationController
     else
       @recipe = Recipe.find(params[:recipe_id])
       render "recipes/show"
-    end
-
-    def destroy
-      @recipe = Recipe.find(params[:recipe_id])
-      @comment = Comment.find(params[:id])
-      @comment.destroy
-      redirect_to ("/recipes/#{params[:recipe_id]")
+    end    
+  end
+  def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @comment = @recipe.comments.find(params[:id])
+    if @comment.destroy
+      redirect_to recipe_path(@recipe)
     end
   end
 
