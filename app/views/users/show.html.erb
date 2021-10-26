@@ -1,5 +1,10 @@
-<h2><%= @user.name %>さんの詳細ページ</h2>
+<h2><%= @user.name %>さんの投稿したレシピ</h2>
 <hr>
-<% @recipes.each do |recipe| %>
-  <%= link_to(recipe.title, "/recipes/#{recipe.id}") %><br>
-<% end %>
+
+
+  <% @recipes.each do |recipe| %>
+    <div class="d-flex align-items-start">
+      <%= image_tag recipe.dish.to_s, class: 'dish_sized' %>
+      <%= link_to recipe.title, "/recipes/#{recipe.id}" , class: 'show_link' %>
+  <% end %>
+
