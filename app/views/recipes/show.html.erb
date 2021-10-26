@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class='recipe_detail'>作り方<br><%= safe_join(@recipe.recipe.split("\n"),tag(:br)) %><br><br></div>
-  <% if @recipe.user_id == current_user.id %>
+  <% if user_signed_in? && @recipe.user_id == current_user.id %>
     <div class='d-flex'>
       <%= link_to("/recipes/#{@recipe.id}/edit") do %>
         <button type="button" class="btn btn-outline-secondary btn-sm">編集</button>
