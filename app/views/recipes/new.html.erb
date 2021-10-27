@@ -6,7 +6,32 @@
   </div>
   <div>
     <%= f.label :dish, "完成写真" %><br>
-    <%= f.file_field :dish, class: "image" %>
+    <%= f.file_field :dish, class: "image", id: :dish_img %><br>
+    <% if @recipe.dish.present? %>
+      <%= image_tag @recipe.dish, id: :dish_img %>
+    <% else %>
+      <%= image_tag "default.jpg", id: :img_prev %>
+    <% end %>
+    <script type="text/javascript">
+    $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $("#dish_img").change(function(){
+      readURL(this);
+      });
+    function resizeImage(){
+      var img = document.images['dish_img', 'img_prev'];
+      img.height = 100;
+    };
+    });
+    </script>
   </div>
   <div>
     <%= f.label :title, "材料" %><br>
